@@ -33,7 +33,7 @@ const selectedItemsIds = computed(() =>
 const itemRenderDataArray = computed<TSomeItemRenderData[]>(() =>
   items.map((item) => ({
     item,
-    disabled: false,
+    disabled: selectedItemsIds.value.includes(item.id),
   })),
 );
 

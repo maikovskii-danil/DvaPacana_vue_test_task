@@ -29,7 +29,7 @@ const selectedItem = ref<TSomeItem | null>(null);
 const itemRenderDataArray = computed<TSomeItemRenderData[]>(() =>
   items.map((item) => ({
     item,
-    disabled: false,
+    disabled: item.id === selectedItem.value?.id,
   })),
 );
 
