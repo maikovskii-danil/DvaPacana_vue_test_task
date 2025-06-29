@@ -6,7 +6,7 @@
     />
     <div class="bg-blue-700 p-2">
       <SomeItemList
-        :items="items"
+        :item-render-data-array="itemRenderDataArray"
         @click="handleItemSelect"
       />
     </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import CommonSelectedItem from './CommonSelectedItem.vue';
 import SomeItemList from './SomeItemList.vue';
@@ -25,6 +25,13 @@ const { items } = defineProps<{
 }>();
 
 const selectedItem = ref<TSomeItem | null>(null);
+
+const itemRenderDataArray = computed(() =>
+  items.map((item) => ({
+    item,
+    disabled: false,
+  })),
+);
 
 const handleItemSelect = (id: number) => {
   selectedItem.value = items.find((item) => item.id === id) || null;

@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-2 w-[50%]">
     <UserSelectedItemsContainer
-      :items="selectedItems"
+      :item-render-data-array="selectedItemsRenderDataArray"
       @cancel-select="handleItemSelect"
     />
     <div class="bg-blue-700 p-2">
       <SomeItemList
-        :items="items"
+        :item-render-data-array="itemRenderDataArray"
         @click="handleItemSelect"
       />
     </div>
@@ -28,6 +28,20 @@ const { items } = defineProps<{
 const selectedItems = ref<TSomeItem[]>([]);
 const selectedItemsIds = computed(() =>
   selectedItems.value.map((item) => item.id),
+);
+
+const itemRenderDataArray = computed(() =>
+  items.map((item) => ({
+    item,
+    disabled: false,
+  })),
+);
+
+const selectedItemsRenderDataArray = computed(() =>
+  selectedItems.value.map((item) => ({
+    item,
+    disabled: false,
+  })),
 );
 
 const handleItemSelect = (id: number) => {

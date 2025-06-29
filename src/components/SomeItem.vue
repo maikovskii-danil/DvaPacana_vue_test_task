@@ -1,17 +1,18 @@
 <template>
-  <div
-    class="border-3 border-gray-100 text-gray-100 bg-blue-900 text-center w-30 h-30 cursor-pointer hover:bg-blue-600"
-    @click="emit('click', item.id)"
+  <button
+    class="border-3 border-gray-100 text-gray-100 bg-blue-900 text-center w-30 h-30 cursor-pointer hover:bg-blue-600 disabled:bg-gray-600 disabled:cursor-not-allowed"
+    :disabled="itemRenderData.disabled"
+    @click="emit('click', itemRenderData.item.id)"
   >
-    {{ item.name }}
-  </div>
+    {{ itemRenderData.item.name }}
+  </button>
 </template>
 
 <script setup lang="ts">
-import type { TSomeItem } from '../types';
+import type { TSomeItemRenderData } from '../types';
 
 defineProps<{
-  item: TSomeItem;
+  itemRenderData: TSomeItemRenderData;
 }>();
 
 const emit = defineEmits<{
