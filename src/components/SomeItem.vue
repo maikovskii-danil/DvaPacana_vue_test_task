@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-3 border-gray-100 text-gray-100 bg-blue-900 text-center w-30 h-30"
+    class="border-3 border-gray-100 text-gray-100 bg-blue-900 text-center w-30 h-30 cursor-pointer hover:bg-blue-600"
     @click="emit('click', item.id)"
   >
     {{ item.name }}

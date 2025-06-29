@@ -1,6 +1,9 @@
 <template>
   <div class="w-[50%] flex flex-col gap-2">
-    <CommonSelectedItem :item="selectedItem" />
+    <CommonSelectedItem
+      :item="selectedItem"
+      @cancel-select="selectedItem = null"
+    />
     <div class="bg-blue-700 p-2">
       <SomeItemList
         :items="items"
