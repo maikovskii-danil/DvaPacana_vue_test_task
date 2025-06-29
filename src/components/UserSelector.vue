@@ -16,9 +16,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
+import type { TSomeItem, TSomeItemRenderData } from '../types';
 import { MAX_SELECTED_USER_ITEMS } from '../consts';
 import SomeItemList from './SomeItemList.vue';
-import type { TSomeItem } from '../types';
 import UserSelectedItemsContainer from './UserSelectedItemsContainer.vue';
 
 const { items } = defineProps<{
@@ -30,14 +30,14 @@ const selectedItemsIds = computed(() =>
   selectedItems.value.map((item) => item.id),
 );
 
-const itemRenderDataArray = computed(() =>
+const itemRenderDataArray = computed<TSomeItemRenderData[]>(() =>
   items.map((item) => ({
     item,
     disabled: false,
   })),
 );
 
-const selectedItemsRenderDataArray = computed(() =>
+const selectedItemsRenderDataArray = computed<TSomeItemRenderData[]>(() =>
   selectedItems.value.map((item) => ({
     item,
     disabled: false,

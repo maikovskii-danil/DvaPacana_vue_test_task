@@ -16,9 +16,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
+import type { TSomeItem, TSomeItemRenderData } from '../types';
 import CommonSelectedItem from './CommonSelectedItem.vue';
 import SomeItemList from './SomeItemList.vue';
-import type { TSomeItem } from '../types';
 
 const { items } = defineProps<{
   items: TSomeItem[];
@@ -26,7 +26,7 @@ const { items } = defineProps<{
 
 const selectedItem = ref<TSomeItem | null>(null);
 
-const itemRenderDataArray = computed(() =>
+const itemRenderDataArray = computed<TSomeItemRenderData[]>(() =>
   items.map((item) => ({
     item,
     disabled: false,
